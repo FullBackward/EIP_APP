@@ -1,10 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>How to create a website using HTML and CSS</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive GitHub Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    .button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    .scheduler {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-<h1>Test</h1>
+  <h1>Interactive GitHub Page</h1>
+  <p>This page includes interactive JavaScript elements like buttons and a scheduler.</p>
+  
+  <!-- Interactive Button -->
+  <button class="button" id="clickMeButton">Click Me!</button>
+  <p id="message"></p>
+  
+  <!-- Simple Scheduler -->
+  <div class="scheduler">
+    <h2>Scheduler</h2>
+    <p>Enter a delay in seconds to trigger an event:</p>
+    <input type="number" id="delayInput" placeholder="Enter seconds" />
+    <button class="button" id="scheduleButton">Schedule Event</button>
+    <p id="schedulerMessage"></p>
+  </div>
+  
+  <script>
+    // Button click event
+    document.getElementById('clickMeButton').addEventListener('click', function() {
+      document.getElementById('message').textContent = 'Button was clicked!';
+    });
+    
+    // Scheduler event: triggers after a delay specified in seconds
+    document.getElementById('scheduleButton').addEventListener('click', function() {
+      var delay = parseInt(document.getElementById('delayInput').value) * 1000;
+      if (isNaN(delay) || delay <= 0) {
+        document.getElementById('schedulerMessage').textContent = 'Please enter a valid number of seconds.';
+        return;
+      }
+      document.getElementById('schedulerMessage').textContent = 'Event scheduled in ' + (delay / 1000) + ' seconds...';
+      setTimeout(function() {
+        document.getElementById('schedulerMessage').textContent = 'Scheduled event triggered!';
+      }, delay);
+    });
+  </script>
 </body>
 </html>
